@@ -1,32 +1,37 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Simulación Naval Realista - SOUTHCOM CSG</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Flota Naval - Touch Mobile</title>
     <style>
-        body { margin: 0; overflow: hidden; background-color: #000; }
+        body { margin: 0; overflow: hidden; background-color: #000; touch-action: none; /* Desactiva gestos del navegador */ }
         #info {
             position: absolute;
             top: 10px;
             width: 100%;
             text-align: center;
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: sans-serif;
             pointer-events: none;
             text-shadow: 1px 1px 2px black;
             z-index: 10;
+            background: rgba(0,0,0,0.2);
+            padding: 10px 0;
         }
-        h1 { margin: 0; font-size: 1.5rem; font-weight: bold;}
-        p { font-size: 1rem; opacity: 0.9; }
-        #loading { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-family: sans-serif;}
+        h1 { margin: 0; font-size: 1rem; }
+        p { font-size: 0.8rem; margin: 2px 0; color: #bbb;}
+        b { color: #4db8ff; }
+        #loading { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-family: sans-serif; }
     </style>
 </head>
 <body>
     <div id="info">
-        <h1>Simulación Carrier Strike Group - Entorno Realista</h1>
-        <p>Usa el MOUSE para explorar. Observa los reflejos en el agua.</p>
+        <h1>Modo Táctil / Móvil</h1>
+        <p><b>1 Dedo:</b> Rotar | <b>2 Dedos:</b> Mover y Zoom</p>
     </div>
-    <div id="loading">Cargando texturas y shaders...</div>
+    <div id="loading">Cargando texturas...</div>
 
     <script type="importmap">
         {
@@ -44,64 +49,54 @@
         import { Sky } from 'three/addons/objects/Sky.js';
 
         let camera, scene, renderer;
-        let controls, water, sky, sun;
+        let controls, water, sun;
         const fleetGroup = new THREE.Group();
         const airWing = new THREE.Group();
 
-        // --- Textura de Normales para el Agua (Codificada en Base64 para evitar archivos externos) ---
+        // Textura base64 comprimida
         const waterNormalsBase64 = 'data:image/jpg;base64,/2P/gABBKRklGAAEBAQBgAGAAAP/bAEMAAwICAwICAwMDAwQDAwQFCAUFBAQFCgcHBggMCgwMCwoLCw0OEhANDhEOCwsQFhAREhQUFBYMEhYYEhYYFhYWFP/bAEMBAwQEBQUFCgUFChQSChIUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFP/AABEIAIAAgAMBIgACEQEDEQH/xAAfAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgv/xAC1EAACAQMDAgQDBQUEBAAAAX0BAgMABBEFEiExQQYTUWEHInEUMoGRoQgjQrHBFVLR8CQzYnKCCQoWFxgZGiUmJygpKjQ1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj5OXm5+jp6vHy8/T19vf4+fr/xAAfAQADAQEBAQEBAQEBAAAAAAAAAQIDBAUGBwgJCgv/xAC1EQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/AP18ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//Z';
         
         init();
         animate();
 
         function init() {
-            const container = document.createElement('div');
-            document.body.appendChild(container);
-
-            // --- RENDERER CON Mapeo de Tonos Físico ---
-            renderer = new THREE.WebGLRenderer({ antialias: true });
-            renderer.setPixelRatio(window.devicePixelRatio);
+            // Renderer optimizado para móviles
+            renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+            renderer.setPixelRatio(window.devicePixelRatio); // Importante para pantallas retina/celulares
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.toneMapping = THREE.ACESFilmicToneMapping; // Clave para realismo
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
             renderer.toneMappingExposure = 0.5;
-            renderer.shadowMap.enabled = true;
-            renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Sombras suaves
-            container.appendChild(renderer.domElement);
+            renderer.shadowMap.enabled = true; 
+            document.body.appendChild(renderer.domElement);
 
-            // --- SCENE & CAMERA ---
             scene = new THREE.Scene();
+            
             camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 20000);
-            camera.position.set(30, 100, 400);
+            camera.position.set(30, 80, 250);
 
-            // --- LUZ SOL ---
+            // --- LUZ ---
             sun = new THREE.Vector3();
-            const dirLight = new THREE.DirectionalLight(0xffffff, 3); // Luz solar intensa
+            const dirLight = new THREE.DirectionalLight(0xffffff, 2.5);
             dirLight.position.set(100, 100, -100);
             dirLight.castShadow = true;
-            dirLight.shadow.camera.top = 200;
-            dirLight.shadow.camera.bottom = -200;
-            dirLight.shadow.camera.left = -200;
-            dirLight.shadow.camera.right = 200;
-            dirLight.shadow.mapSize.width = 4096; // Sombras de alta resolución
-            dirLight.shadow.mapSize.height = 4096;
+            dirLight.shadow.mapSize.width = 2048; // Reducido un poco para móviles
+            dirLight.shadow.mapSize.height = 2048;
             scene.add(dirLight);
 
-            // --- AGUA REALISTA ---
+            // --- AGUA ---
             const waterGeometry = new THREE.PlaneGeometry(10000, 10000);
             const textureLoader = new THREE.TextureLoader();
-            
             water = new Water(
                 waterGeometry,
                 {
-                    textureWidth: 512,
-                    textureHeight: 512,
+                    textureWidth: 512, textureHeight: 512,
                     waterNormals: textureLoader.load(waterNormalsBase64, function ( texture ) {
                         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-                        document.getElementById('loading').style.display = 'none'; // Ocultar loading
+                        document.getElementById('loading').style.display = 'none';
                     }),
                     sunDirection: new THREE.Vector3(),
                     sunColor: 0xffffff,
-                    waterColor: 0x001e0f, // Color azul oscuro/verdoso del océano profundo
+                    waterColor: 0x001e0f,
                     distortionScale: 3.7,
                     fog: scene.fog !== undefined
                 }
@@ -109,117 +104,80 @@
             water.rotation.x = - Math.PI / 2;
             scene.add(water);
 
-            // --- CIELO ATMOSFÉRICO ---
-            sky = new Sky();
+            // --- CIELO ---
+            const sky = new Sky();
             sky.scale.setScalar(10000);
             scene.add(sky);
-
             const skyUniforms = sky.material.uniforms;
             skyUniforms['turbidity'].value = 10;
             skyUniforms['rayleigh'].value = 2;
             skyUniforms['mieCoefficient'].value = 0.005;
             skyUniforms['mieDirectionalG'].value = 0.8;
 
-            // Configurar posición del sol para el cielo y el agua
-            const theta = Math.PI * (0.45 - 0.5); // Altura del sol
-            const phi = 2 * Math.PI * (0.25 - 0.5); // Azimut
-
-            sun.x = Math.cos(phi);
-            sun.y = Math.sin(phi) * Math.sin(theta);
-            sun.z = Math.sin(phi) * Math.cos(theta);
-
+            const theta = Math.PI * (0.45 - 0.5);
+            const phi = 2 * Math.PI * (0.25 - 0.5);
+            sun.x = Math.cos(phi); sun.y = Math.sin(phi) * Math.sin(theta); sun.z = Math.sin(phi) * Math.cos(theta);
             sky.material.uniforms['sunPosition'].value.copy(sun);
             water.material.uniforms['sunDirection'].value.copy(sun).normalize();
-            dirLight.position.copy(sun).multiplyScalar(500); // Mover la luz direccional a la posición del sol
+            dirLight.position.copy(sun).multiplyScalar(500);
 
-            // --- CONTROLES ---
+            // --- CONTROLES TÁCTILES ---
             controls = new OrbitControls(camera, renderer.domElement);
-            controls.maxPolarAngle = Math.PI * 0.495;
-            controls.target.set(0, 10, 0);
-            controls.minDistance = 40.0;
-            controls.maxDistance = 800.0;
-            controls.update();
+            controls.enableDamping = true; // Movimiento suave (inercia)
+            controls.dampingFactor = 0.05;
+            controls.screenSpacePanning = false; // "false" es mejor para mapas 3D
+            controls.enablePan = true;  // PERMITE MOVERSE CON 2 DEDOS
+            controls.minDistance = 20;
+            controls.maxDistance = 800;
+            controls.maxPolarAngle = Math.PI / 2 - 0.05; // Evita entrar al agua
 
-            // --- MATERIALES PBR MEJORADOS PARA LOS MODELOS ---
-            const hullMaterial = new THREE.MeshStandardMaterial({ 
-                color: 0x70757a, // Gris naval
-                roughness: 0.7,  // Metal no pulido
-                metalness: 0.4,  // Ligeramente metálico
-                envMapIntensity: 1.0
-            });
-            const deckMaterial = new THREE.MeshStandardMaterial({ 
-                color: 0x3a3a3a, // Cubierta de asfalto oscuro
-                roughness: 0.9, 
-                metalness: 0.1 
-            });
+            // --- MODELOS (Simplificados para rendimiento móvil) ---
+            const hullMaterial = new THREE.MeshStandardMaterial({ color: 0x70757a, roughness: 0.7, metalness: 0.4 });
+            const deckMaterial = new THREE.MeshStandardMaterial({ color: 0x3a3a3a, roughness: 0.9, metalness: 0.1 });
 
-            // --- CONSTRUCCIÓN DE LA FLOTA (Geometría similar, mejores materiales) ---
-            
-            // 1. Portaviones
-            function createCarrier() {
-                const group = new THREE.Group();
-                const hull = new THREE.Mesh(new THREE.BoxGeometry(40, 12, 200), hullMaterial);
-                hull.position.y = 5; hull.castShadow = true; hull.receiveShadow = true; group.add(hull);
+            // Portaviones
+            const carrier = new THREE.Group();
+            const cHull = new THREE.Mesh(new THREE.BoxGeometry(40, 12, 180), hullMaterial);
+            cHull.position.y = 5; cHull.castShadow = true; cHull.receiveShadow = true; carrier.add(cHull);
+            const cDeck = new THREE.Mesh(new THREE.BoxGeometry(70, 1, 200), deckMaterial);
+            cDeck.position.y = 11.5; cDeck.receiveShadow = true; carrier.add(cDeck);
+            const cTower = new THREE.Mesh(new THREE.BoxGeometry(10, 15, 20), hullMaterial);
+            cTower.position.set(25, 18, 40); cTower.castShadow = true; carrier.add(cTower);
+            fleetGroup.add(carrier);
 
-                // Cubierta angular
-                const deckShape = new THREE.Shape();
-                deckShape.moveTo(-25, -100); deckShape.lineTo(25, -100); deckShape.lineTo(25, 80); deckShape.lineTo(40, 100); deckShape.lineTo(-35, 100);
-                const deckGeo = new THREE.ExtrudeGeometry(deckShape, { depth: 2, bevelEnabled: false });
-                const deck = new THREE.Mesh(deckGeo, deckMaterial);
-                deck.rotation.x = Math.PI / 2; deck.position.set(0, 11.5, 0); deck.receiveShadow = true; group.add(deck);
-
-                const tower = new THREE.Mesh(new THREE.BoxGeometry(8, 12, 15), hullMaterial);
-                tower.position.set(20, 18, 40); tower.castShadow = true; group.add(tower);
-                return group;
-            }
-
-            // 2. Destructores
-            function createDestroyer() {
+            // Destructores (Función reutilizable)
+            function addDestroyer(x, z) {
                 const group = new THREE.Group();
                 const hull = new THREE.Mesh(new THREE.BoxGeometry(8, 6, 60), hullMaterial);
                 hull.position.y = 3; hull.castShadow = true; group.add(hull);
                 const bridge = new THREE.Mesh(new THREE.BoxGeometry(6, 8, 15), hullMaterial);
                 bridge.position.set(0, 8, 5); bridge.castShadow = true; group.add(bridge);
-                const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 1, 10), hullMaterial);
-                mast.position.set(0, 15, 0); group.add(mast);
-                return group;
+                group.position.set(x, 0, z);
+                fleetGroup.add(group);
             }
+            // Posiciones
+            addDestroyer(-80, -80); addDestroyer(80, -80);
+            addDestroyer(-90, 20); addDestroyer(90, 20);
+            addDestroyer(0, 130);
 
-            // 3. F-35s
-            function createF35() {
-                const group = new THREE.Group();
-                const jetMat = new THREE.MeshStandardMaterial({ color: 0x444444, roughness: 0.5, metalness: 0.8 });
-                const body = new THREE.Mesh(new THREE.ConeGeometry(1.2, 8, 5), jetMat);
-                body.rotation.x = Math.PI / 2; group.add(body);
-                const wings = new THREE.Mesh(new THREE.BoxGeometry(8, 0.2, 3), jetMat);
-                wings.position.z = 1; group.add(wings);
-                const tail = new THREE.Mesh(new THREE.BoxGeometry(3, 0.2, 2), jetMat);
-                tail.position.set(0, 0.5, 3.5); tail.rotation.x = Math.PI/4; group.add(tail);
-                group.castShadow = true;
-                return group;
-            }
-
-            // Despliegue
-            scene.add(fleetGroup);
-            fleetGroup.add(createCarrier());
-
-            const destroyerPositions = [
-                { x: -70, z: -80 }, { x: 70, z: -80 },
-                { x: -80, z: 20 }, { x: 80, z: 20 },
-                { x: -50, z: 120 }
-            ];
-            destroyerPositions.forEach(pos => {
-                const dd = createDestroyer();
-                dd.position.set(pos.x, 0, pos.z);
-                fleetGroup.add(dd);
-            });
-
-            scene.add(airWing);
+            // Aviones F-35
+            const jetMat = new THREE.MeshStandardMaterial({ color: 0x444444 });
+            const f35Geo = new THREE.ConeGeometry(1.2, 8, 4);
+            const wingsGeo = new THREE.BoxGeometry(8, 0.2, 3);
+            
             for (let i = 0; i < 5; i++) {
-                const f35 = createF35();
-                f35.position.set((i-2)*15, 150 + (Math.abs(i-2)*5), (i-2)*15);
-                airWing.add(f35);
+                const group = new THREE.Group();
+                const body = new THREE.Mesh(f35Geo, jetMat);
+                body.rotation.x = Math.PI/2;
+                const wings = new THREE.Mesh(wingsGeo, jetMat);
+                wings.position.z = 1;
+                group.add(body); group.add(wings);
+                group.position.set((i-2)*15, 120, (i-2)*15);
+                airWing.add(group);
             }
+
+            scene.add(fleetGroup);
+            scene.add(airWing);
 
             window.addEventListener('resize', onWindowResize);
         }
@@ -232,29 +190,21 @@
 
         function animate() {
             requestAnimationFrame(animate);
-            render();
-        }
-
-        function render() {
             const time = performance.now() * 0.001;
 
-            // Animar el agua
+            // Animaciones
             water.material.uniforms['time'].value += 1.0 / 60.0;
-
-            // Balanceo suave de los barcos basado en el tiempo
+            
             fleetGroup.children.forEach((ship, idx) => {
-                 ship.position.y = Math.sin(time * 0.8 + idx) * 0.8; // Altura
-                 ship.rotation.x = Math.sin(time * 0.6 + idx) * 0.015; // Cabeceo
-                 ship.rotation.z = Math.cos(time * 0.7 + idx * 0.5) * 0.02; // Balanceo lateral
+                 ship.position.y = Math.sin(time * 0.8 + idx) * 0.5;
+                 ship.rotation.z = Math.cos(time * 0.5 + idx) * 0.02;
             });
 
-             // Movimiento de los aviones
-             airWing.position.z = Math.sin(time * 0.1) * 200;
-             airWing.position.x = Math.cos(time * 0.1) * 200;
-             airWing.rotation.y = -time * 0.1 + Math.PI;
-             airWing.children.forEach(jet => jet.rotation.z = -Math.PI / 6);
+             airWing.position.z = Math.sin(time * 0.15) * 200;
+             airWing.position.x = Math.cos(time * 0.15) * 200;
+             airWing.rotation.y = -time * 0.15 + Math.PI;
 
-            controls.update();
+            controls.update(); // Necesario para el "damping" (inercia suave)
             renderer.render(scene, camera);
         }
     </script>

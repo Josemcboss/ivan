@@ -1,33 +1,262 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<title>Markmap</title>
-<style>
-* {
-  margin: 0;
-  padding: 0;
-}
-html {
-  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-}
-#mindmap {
-  display: block;
-  width: 100vw;
-  height: 100vh;
-}
-.markmap-dark {
-  background: #27272a;
-  color: white;
-}
-</style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css">
+    <meta charset="UTF-8">
+    <title>Simulación Naval Realista - SOUTHCOM CSG</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; }
+        #info {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            pointer-events: none;
+            text-shadow: 1px 1px 2px black;
+            z-index: 10;
+        }
+        h1 { margin: 0; font-size: 1.5rem; font-weight: bold;}
+        p { font-size: 1rem; opacity: 0.9; }
+        #loading { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-family: sans-serif;}
+    </style>
 </head>
 <body>
-<svg id="mindmap"></svg>
-<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(()=>{setTimeout(()=>{const{markmap:S,mm:Q}=window,$=new S.Toolbar;$.attach(Q);const I=$.render();I.setAttribute("style","position:absolute;bottom:20px;right:20px"),document.body.append(I)})})()</script><script>((l,U,M,R)=>{const N=l();window.mm=N.Markmap.create("svg#mindmap",(U||N.deriveOptions)(R),M),window.matchMedia("(prefers-color-scheme: dark)").matches&&document.documentElement.classList.add("markmap-dark")})(()=>window.markmap,null,{"content":"Direcci&#xf3;n Administrativa: Factores Humanos y Motivaci&#xf3;n","children":[{"content":"Grupo 4","children":[{"content":"Ramses Ure&#xf1;a 24-0596","children":[],"payload":{"tag":"li","lines":"3,4"}},{"content":"&#xc1;ngel Jim&#xe9;nez 25-0263","children":[],"payload":{"tag":"li","lines":"4,5"}},{"content":"Junior O. De Los Santos 24-1503","children":[],"payload":{"tag":"li","lines":"5,6"}},{"content":"Kelvin Villaman 24-1616","children":[],"payload":{"tag":"li","lines":"6,7"}},{"content":"Iv&#xe1;n Peralta 17-0002","children":[],"payload":{"tag":"li","lines":"7,10"}}],"payload":{"tag":"h2","lines":"2,3"}},{"content":"Contenido","children":[{"content":"1. Factores humanos en la administraci&#xf3;n","children":[],"payload":{"tag":"li","lines":"13,14","listIndex":1}},{"content":"2. Motivaci&#xf3;n","children":[],"payload":{"tag":"li","lines":"14,15","listIndex":2}},{"content":"3. Diferentes teor&#xed;as de la motivaci&#xf3;n","children":[],"payload":{"tag":"li","lines":"15,16","listIndex":3}},{"content":"4. Enriquecimiento del puesto","children":[],"payload":{"tag":"li","lines":"16,17","listIndex":4}},{"content":"5. Enfoque sist&#xe9;mico y contingente en la motivaci&#xf3;n","children":[],"payload":{"tag":"li","lines":"17,19","listIndex":5}}],"payload":{"tag":"h2","lines":"12,13"}},{"content":"Factores Humanos en la Administraci&#xf3;n","children":[{"content":"Definici&#xf3;n","children":[{"content":"Conjunto de variables psicol&#xf3;gicas, sociales, fisiol&#xf3;gicas y organizacionales que influyen en el comportamiento de las personas dentro del entorno laboral.","children":[],"payload":{"tag":"li","lines":"24,26"}}],"payload":{"tag":"h3","lines":"23,24"}},{"content":"Principales Factores Humanos y su Impacto","children":[{"content":"Factores fisiol&#xf3;gicos y ergon&#xf3;micos","children":[],"payload":{"tag":"li","lines":"27,28"}},{"content":"Factores psicol&#xf3;gicos y sociales","children":[],"payload":{"tag":"li","lines":"28,30"}}],"payload":{"tag":"h3","lines":"26,27"}},{"content":"Importancia","children":[{"content":"Aumentan la productividad","children":[],"payload":{"tag":"li","lines":"31,32"}},{"content":"Favorecen la salud ocupacional","children":[],"payload":{"tag":"li","lines":"32,33"}},{"content":"Mejoran la satisfacci&#xf3;n y el clima laboral","children":[],"payload":{"tag":"li","lines":"33,35"}}],"payload":{"tag":"h3","lines":"30,31"}}],"payload":{"tag":"h2","lines":"21,22"}},{"content":"Motivaci&#xf3;n","children":[{"content":"En la Direcci&#xf3;n Administrativa","children":[{"content":"Esencial para alcanzar los objetivos institucionales.","children":[],"payload":{"tag":"li","lines":"40,41"}},{"content":"Busca incentivar el entusiasmo, compromiso y eficiencia del personal.","children":[],"payload":{"tag":"li","lines":"41,42"}},{"content":"Factores clave:","children":[{"content":"Ambiente laboral positivo","children":[],"payload":{"tag":"li","lines":"43,44"}},{"content":"Reconocimiento del esfuerzo","children":[],"payload":{"tag":"li","lines":"44,45"}},{"content":"Posibilidad de crecimiento profesional","children":[],"payload":{"tag":"li","lines":"45,47"}}],"payload":{"tag":"li","lines":"42,47"}}],"payload":{"tag":"h3","lines":"39,40"}}],"payload":{"tag":"h2","lines":"37,38"}},{"content":"Enriquecimiento del Puesto","children":[{"content":"Definici&#xf3;n","children":[{"content":"Estrategia de gesti&#xf3;n que ampl&#xed;a un puesto de trabajo con tareas complementarias, mayores responsabilidades y autoridad decisional.","children":[],"payload":{"tag":"li","lines":"52,54"}}],"payload":{"tag":"h3","lines":"51,52"}},{"content":"Ventajas","children":[{"content":"Mayor satisfacci&#xf3;n laboral","children":[],"payload":{"tag":"li","lines":"55,56"}},{"content":"Mayor compromiso de los empleados","children":[],"payload":{"tag":"li","lines":"56,57"}},{"content":"Desarrollo de habilidades","children":[],"payload":{"tag":"li","lines":"57,58"}},{"content":"Reducci&#xf3;n de monoton&#xed;a y aburrimiento","children":[],"payload":{"tag":"li","lines":"58,60"}}],"payload":{"tag":"h3","lines":"54,55"}}],"payload":{"tag":"h2","lines":"49,50"}},{"content":"Motivaci&#xf3;n en Administraci&#xf3;n","children":[{"content":"Definici&#xf3;n","children":[{"content":"Proceso mediante el cual los l&#xed;deres inspiran a los empleados a actuar con entusiasmo, compromiso y productividad para alcanzar los objetivos organizacionales.","children":[],"payload":{"tag":"li","lines":"65,67"}}],"payload":{"tag":"h3","lines":"64,65"}}],"payload":{"tag":"h2","lines":"62,63"}},{"content":"Principales Teor&#xed;as de la Motivaci&#xf3;n","children":[{"content":"Teor&#xed;a de McGregor","children":[{"content":"<strong>Teor&#xed;a X:</strong> empleados perezosos &#x2192; requieren control.","children":[],"payload":{"tag":"li","lines":"72,73"}},{"content":"<strong>Teor&#xed;a Y:</strong> empleados responsables y creativos &#x2192; requieren confianza.","children":[],"payload":{"tag":"li","lines":"73,75"}}],"payload":{"tag":"h3","lines":"71,72"}},{"content":"Teor&#xed;a de Herzberg","children":[{"content":"<strong>Factores Higi&#xe9;nicos:</strong> evitan la insatisfacci&#xf3;n (salario, condiciones).","children":[],"payload":{"tag":"li","lines":"76,77"}},{"content":"<strong>Factores Motivadores:</strong> generan motivaci&#xf3;n (reconocimiento, crecimiento).","children":[],"payload":{"tag":"li","lines":"77,79"}}],"payload":{"tag":"h3","lines":"75,76"}},{"content":"Teor&#xed;a de Maslow","children":[{"content":"<strong>Pir&#xe1;mide de necesidades:</strong>","children":[{"content":"1. Fisiol&#xf3;gicas","children":[],"payload":{"tag":"li","lines":"81,82","listIndex":1}},{"content":"2. Seguridad","children":[],"payload":{"tag":"li","lines":"82,83","listIndex":2}},{"content":"3. Sociales","children":[],"payload":{"tag":"li","lines":"83,84","listIndex":3}},{"content":"4. Estima","children":[],"payload":{"tag":"li","lines":"84,85","listIndex":4}},{"content":"5. Autorrealizaci&#xf3;n","children":[],"payload":{"tag":"li","lines":"85,87","listIndex":5}}],"payload":{"tag":"li","lines":"80,87"}}],"payload":{"tag":"h3","lines":"79,80"}},{"content":"Teor&#xed;a de McClelland","children":[{"content":"<strong>Necesidades dominantes:</strong>","children":[{"content":"Logro (retos)","children":[],"payload":{"tag":"li","lines":"89,90"}},{"content":"Poder (liderazgo)","children":[],"payload":{"tag":"li","lines":"90,91"}},{"content":"Afiliaci&#xf3;n (relaciones)","children":[],"payload":{"tag":"li","lines":"91,93"}}],"payload":{"tag":"li","lines":"88,93"}}],"payload":{"tag":"h3","lines":"87,88"}},{"content":"Teor&#xed;a de Expectativas (Vroom)","children":[{"content":"Motivaci&#xf3;n = Esfuerzo &#x2192; Resultado &#x2192; Recompensa","children":[],"payload":{"tag":"li","lines":"94,95"}},{"content":"El esfuerzo depende de la expectativa de obtener la recompensa.","children":[],"payload":{"tag":"li","lines":"95,97"}}],"payload":{"tag":"h3","lines":"93,94"}},{"content":"Teor&#xed;a del Refuerzo (Skinner)","children":[{"content":"Las personas repiten conductas recompensadas.","children":[{"content":"<strong>Refuerzos positivos:</strong> premios, elogios, bonificaciones.","children":[],"payload":{"tag":"li","lines":"99,100"}},{"content":"<strong>Refuerzos negativos:</strong> evitan consecuencias no deseadas.","children":[],"payload":{"tag":"li","lines":"100,101"}},{"content":"<strong>Castigos:</strong> reducen conductas no deseadas, pero no motivan.","children":[],"payload":{"tag":"li","lines":"101,103"}}],"payload":{"tag":"li","lines":"98,103"}}],"payload":{"tag":"h3","lines":"97,98"}}],"payload":{"tag":"h2","lines":"69,70"}},{"content":"Enfoque Sist&#xe9;mico y Contingente en la Motivaci&#xf3;n","children":[{"content":"Descripci&#xf3;n","children":[{"content":"Reconoce que no existe una f&#xf3;rmula universal para motivar.","children":[],"payload":{"tag":"li","lines":"108,109"}},{"content":"Integra y sintetiza teor&#xed;as previas dentro de un marco contextual din&#xe1;mico.","children":[],"payload":{"tag":"li","lines":"109,111"}}],"payload":{"tag":"h3","lines":"107,108"}},{"content":"Dimensiones Clave","children":[{"content":"1. Variables Individuales (Microsistema)","children":[{"content":"Personalidad y disposici&#xf3;n","children":[],"payload":{"tag":"li","lines":"114,115"}},{"content":"Locus de control","children":[],"payload":{"tag":"li","lines":"115,116"}},{"content":"Autoeficacia","children":[],"payload":{"tag":"li","lines":"116,117"}},{"content":"Valores y preferencias culturales","children":[],"payload":{"tag":"li","lines":"117,118"}},{"content":"Etapa de desarrollo profesional<br>\n<strong>Autores:</strong> Costa &amp; McCrae, Rotter, Bandura","children":[],"payload":{"tag":"li","lines":"118,121"}}],"payload":{"tag":"h4","lines":"113,114"}},{"content":"2. Variables Organizacionales (Mesosistema)","children":[{"content":"Tipo de tecnolog&#xed;a y tarea","children":[],"payload":{"tag":"li","lines":"122,123"}},{"content":"Dise&#xf1;o organizacional","children":[],"payload":{"tag":"li","lines":"123,124"}},{"content":"Sistemas de recompensa y evaluaci&#xf3;n<br>\n<strong>Autores:</strong> Woodward, Perrow, Burns &amp; Stalker","children":[],"payload":{"tag":"li","lines":"124,127"}}],"payload":{"tag":"h4","lines":"121,122"}},{"content":"3. Variables Ambientales (Macrosistema)","children":[{"content":"Condiciones del mercado laboral","children":[],"payload":{"tag":"li","lines":"128,129"}},{"content":"Contexto econ&#xf3;mico nacional y global","children":[],"payload":{"tag":"li","lines":"129,130"}},{"content":"Marco legal e institucional","children":[],"payload":{"tag":"li","lines":"130,132"}}],"payload":{"tag":"h4","lines":"127,128"}}],"payload":{"tag":"h3","lines":"111,112"}}],"payload":{"tag":"h2","lines":"105,106"}},{"content":"Precursores Fundamentales","children":[{"content":"Teor&#xed;a del Liderazgo Contingente (Fred Fiedler, 1967)","children":[{"content":"La efectividad del liderazgo depende de la adecuaci&#xf3;n entre el estilo del l&#xed;der y el grado de control de la situaci&#xf3;n.","children":[],"payload":{"tag":"li","lines":"137,138"}},{"content":"Introduce la escala <em>Least Preferred Co-worker (LPC)</em>.","children":[],"payload":{"tag":"li","lines":"138,139"}},{"content":"Diferentes situaciones requieren diferentes estrategias de motivaci&#xf3;n.","children":[],"payload":{"tag":"li","lines":"139,141"}}],"payload":{"tag":"h3","lines":"136,137"}},{"content":"Teor&#xed;a del Liderazgo Situacional (Paul Hersey y Ken Blanchard, 1969)","children":[{"content":"El estilo de liderazgo debe variar seg&#xfa;n el nivel de madurez de los seguidores.","children":[],"payload":{"tag":"li","lines":"142,143"}},{"content":"Identifica cuatro niveles de desarrollo del empleado con distintas necesidades motivacionales.","children":[],"payload":{"tag":"li","lines":"143,145"}}],"payload":{"tag":"h3","lines":"141,142"}}],"payload":{"tag":"h2","lines":"134,135"}},{"content":"Conclusi&#xf3;n","children":[{"content":"Los factores humanos y la motivaci&#xf3;n son ejes esenciales de la direcci&#xf3;n administrativa.","children":[],"payload":{"tag":"li","lines":"148,149"}},{"content":"Un enfoque sist&#xe9;mico permite adaptar estrategias seg&#xfa;n personas, contextos y organizaciones.","children":[],"payload":{"tag":"li","lines":"149,151"}}],"payload":{"tag":"h2","lines":"147,148"}},{"content":"Muchas Gracias","children":[],"payload":{"tag":"h2","lines":"153,154"}}],"payload":{"tag":"h1","lines":"0,1"}},null)</script>
+    <div id="info">
+        <h1>Simulación Carrier Strike Group - Entorno Realista</h1>
+        <p>Usa el MOUSE para explorar. Observa los reflejos en el agua.</p>
+    </div>
+    <div id="loading">Cargando texturas y shaders...</div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { Water } from 'three/addons/objects/Water.js';
+        import { Sky } from 'three/addons/objects/Sky.js';
+
+        let camera, scene, renderer;
+        let controls, water, sky, sun;
+        const fleetGroup = new THREE.Group();
+        const airWing = new THREE.Group();
+
+        // --- Textura de Normales para el Agua (Codificada en Base64 para evitar archivos externos) ---
+        const waterNormalsBase64 = 'data:image/jpg;base64,/2P/gABBKRklGAAEBAQBgAGAAAP/bAEMAAwICAwICAwMDAwQDAwQFCAUFBAQFCgcHBggMCgwMCwoLCw0OEhANDhEOCwsQFhAREhQUFBYMEhYYEhYYFhYWFP/bAEMBAwQEBQUFCgUFChQSChIUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFP/AABEIAIAAgAMBIgACEQEDEQH/xAAfAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgv/xAC1EAACAQMDAgQDBQUEBAAAAX0BAgMABBEFEiExQQYTUWEHInEUMoGRoQgjQrHBFVLR8CQzYnKCCQoWFxgZGiUmJygpKjQ1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj5OXm5+jp6vHy8/T19vf4+fr/xAAfAQADAQEBAQEBAQEBAAAAAAAAAQIDBAUGBwgJCgv/xAC1EQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/AP18ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//Z';
+        
+        init();
+        animate();
+
+        function init() {
+            const container = document.createElement('div');
+            document.body.appendChild(container);
+
+            // --- RENDERER CON Mapeo de Tonos Físico ---
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.toneMapping = THREE.ACESFilmicToneMapping; // Clave para realismo
+            renderer.toneMappingExposure = 0.5;
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Sombras suaves
+            container.appendChild(renderer.domElement);
+
+            // --- SCENE & CAMERA ---
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 20000);
+            camera.position.set(30, 100, 400);
+
+            // --- LUZ SOL ---
+            sun = new THREE.Vector3();
+            const dirLight = new THREE.DirectionalLight(0xffffff, 3); // Luz solar intensa
+            dirLight.position.set(100, 100, -100);
+            dirLight.castShadow = true;
+            dirLight.shadow.camera.top = 200;
+            dirLight.shadow.camera.bottom = -200;
+            dirLight.shadow.camera.left = -200;
+            dirLight.shadow.camera.right = 200;
+            dirLight.shadow.mapSize.width = 4096; // Sombras de alta resolución
+            dirLight.shadow.mapSize.height = 4096;
+            scene.add(dirLight);
+
+            // --- AGUA REALISTA ---
+            const waterGeometry = new THREE.PlaneGeometry(10000, 10000);
+            const textureLoader = new THREE.TextureLoader();
+            
+            water = new Water(
+                waterGeometry,
+                {
+                    textureWidth: 512,
+                    textureHeight: 512,
+                    waterNormals: textureLoader.load(waterNormalsBase64, function ( texture ) {
+                        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+                        document.getElementById('loading').style.display = 'none'; // Ocultar loading
+                    }),
+                    sunDirection: new THREE.Vector3(),
+                    sunColor: 0xffffff,
+                    waterColor: 0x001e0f, // Color azul oscuro/verdoso del océano profundo
+                    distortionScale: 3.7,
+                    fog: scene.fog !== undefined
+                }
+            );
+            water.rotation.x = - Math.PI / 2;
+            scene.add(water);
+
+            // --- CIELO ATMOSFÉRICO ---
+            sky = new Sky();
+            sky.scale.setScalar(10000);
+            scene.add(sky);
+
+            const skyUniforms = sky.material.uniforms;
+            skyUniforms['turbidity'].value = 10;
+            skyUniforms['rayleigh'].value = 2;
+            skyUniforms['mieCoefficient'].value = 0.005;
+            skyUniforms['mieDirectionalG'].value = 0.8;
+
+            // Configurar posición del sol para el cielo y el agua
+            const theta = Math.PI * (0.45 - 0.5); // Altura del sol
+            const phi = 2 * Math.PI * (0.25 - 0.5); // Azimut
+
+            sun.x = Math.cos(phi);
+            sun.y = Math.sin(phi) * Math.sin(theta);
+            sun.z = Math.sin(phi) * Math.cos(theta);
+
+            sky.material.uniforms['sunPosition'].value.copy(sun);
+            water.material.uniforms['sunDirection'].value.copy(sun).normalize();
+            dirLight.position.copy(sun).multiplyScalar(500); // Mover la luz direccional a la posición del sol
+
+            // --- CONTROLES ---
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.maxPolarAngle = Math.PI * 0.495;
+            controls.target.set(0, 10, 0);
+            controls.minDistance = 40.0;
+            controls.maxDistance = 800.0;
+            controls.update();
+
+            // --- MATERIALES PBR MEJORADOS PARA LOS MODELOS ---
+            const hullMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x70757a, // Gris naval
+                roughness: 0.7,  // Metal no pulido
+                metalness: 0.4,  // Ligeramente metálico
+                envMapIntensity: 1.0
+            });
+            const deckMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x3a3a3a, // Cubierta de asfalto oscuro
+                roughness: 0.9, 
+                metalness: 0.1 
+            });
+
+            // --- CONSTRUCCIÓN DE LA FLOTA (Geometría similar, mejores materiales) ---
+            
+            // 1. Portaviones
+            function createCarrier() {
+                const group = new THREE.Group();
+                const hull = new THREE.Mesh(new THREE.BoxGeometry(40, 12, 200), hullMaterial);
+                hull.position.y = 5; hull.castShadow = true; hull.receiveShadow = true; group.add(hull);
+
+                // Cubierta angular
+                const deckShape = new THREE.Shape();
+                deckShape.moveTo(-25, -100); deckShape.lineTo(25, -100); deckShape.lineTo(25, 80); deckShape.lineTo(40, 100); deckShape.lineTo(-35, 100);
+                const deckGeo = new THREE.ExtrudeGeometry(deckShape, { depth: 2, bevelEnabled: false });
+                const deck = new THREE.Mesh(deckGeo, deckMaterial);
+                deck.rotation.x = Math.PI / 2; deck.position.set(0, 11.5, 0); deck.receiveShadow = true; group.add(deck);
+
+                const tower = new THREE.Mesh(new THREE.BoxGeometry(8, 12, 15), hullMaterial);
+                tower.position.set(20, 18, 40); tower.castShadow = true; group.add(tower);
+                return group;
+            }
+
+            // 2. Destructores
+            function createDestroyer() {
+                const group = new THREE.Group();
+                const hull = new THREE.Mesh(new THREE.BoxGeometry(8, 6, 60), hullMaterial);
+                hull.position.y = 3; hull.castShadow = true; group.add(hull);
+                const bridge = new THREE.Mesh(new THREE.BoxGeometry(6, 8, 15), hullMaterial);
+                bridge.position.set(0, 8, 5); bridge.castShadow = true; group.add(bridge);
+                const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 1, 10), hullMaterial);
+                mast.position.set(0, 15, 0); group.add(mast);
+                return group;
+            }
+
+            // 3. F-35s
+            function createF35() {
+                const group = new THREE.Group();
+                const jetMat = new THREE.MeshStandardMaterial({ color: 0x444444, roughness: 0.5, metalness: 0.8 });
+                const body = new THREE.Mesh(new THREE.ConeGeometry(1.2, 8, 5), jetMat);
+                body.rotation.x = Math.PI / 2; group.add(body);
+                const wings = new THREE.Mesh(new THREE.BoxGeometry(8, 0.2, 3), jetMat);
+                wings.position.z = 1; group.add(wings);
+                const tail = new THREE.Mesh(new THREE.BoxGeometry(3, 0.2, 2), jetMat);
+                tail.position.set(0, 0.5, 3.5); tail.rotation.x = Math.PI/4; group.add(tail);
+                group.castShadow = true;
+                return group;
+            }
+
+            // Despliegue
+            scene.add(fleetGroup);
+            fleetGroup.add(createCarrier());
+
+            const destroyerPositions = [
+                { x: -70, z: -80 }, { x: 70, z: -80 },
+                { x: -80, z: 20 }, { x: 80, z: 20 },
+                { x: -50, z: 120 }
+            ];
+            destroyerPositions.forEach(pos => {
+                const dd = createDestroyer();
+                dd.position.set(pos.x, 0, pos.z);
+                fleetGroup.add(dd);
+            });
+
+            scene.add(airWing);
+            for (let i = 0; i < 5; i++) {
+                const f35 = createF35();
+                f35.position.set((i-2)*15, 150 + (Math.abs(i-2)*5), (i-2)*15);
+                airWing.add(f35);
+            }
+
+            window.addEventListener('resize', onWindowResize);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            render();
+        }
+
+        function render() {
+            const time = performance.now() * 0.001;
+
+            // Animar el agua
+            water.material.uniforms['time'].value += 1.0 / 60.0;
+
+            // Balanceo suave de los barcos basado en el tiempo
+            fleetGroup.children.forEach((ship, idx) => {
+                 ship.position.y = Math.sin(time * 0.8 + idx) * 0.8; // Altura
+                 ship.rotation.x = Math.sin(time * 0.6 + idx) * 0.015; // Cabeceo
+                 ship.rotation.z = Math.cos(time * 0.7 + idx * 0.5) * 0.02; // Balanceo lateral
+            });
+
+             // Movimiento de los aviones
+             airWing.position.z = Math.sin(time * 0.1) * 200;
+             airWing.position.x = Math.cos(time * 0.1) * 200;
+             airWing.rotation.y = -time * 0.1 + Math.PI;
+             airWing.children.forEach(jet => jet.rotation.z = -Math.PI / 6);
+
+            controls.update();
+            renderer.render(scene, camera);
+        }
+    </script>
 </body>
 </html>
